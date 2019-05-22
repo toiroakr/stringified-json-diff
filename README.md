@@ -12,7 +12,18 @@ Diff tool for stringified jsons.
 # Usage
 <!-- usage -->
 ```
+$ npm install -g stringified-json-diff
 $ sjd "{\"foo\": \"bar\"}" "{\"foo\": \"baz\"}"
+ {
+-  foo: "bar"
++  foo: "baz"
+ }
+```
+
+or 
+
+```
+$ npx stringified-json-diff "{\"foo\": \"bar\"}" "{\"foo\": \"baz\"}"
  {
 -  foo: "bar"
 +  foo: "baz"
