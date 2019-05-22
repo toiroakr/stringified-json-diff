@@ -1,0 +1,46 @@
+{
+  "name": "stringified-json-diff",
+  "description": "Diff tool for stringified jsons.",
+  "version": "0.0.0",
+  "author": "Higuchi Akira @toiroakr",
+  "bin": {
+    "sjd": "./bin/run"
+  },
+  "bugs": "https://github.com/toiroakr/stringified-json-diff/issues",
+  "dependencies": {
+    "@oclif/command": "1.5.13",
+    "@oclif/config": "1.13.0",
+    "@oclif/plugin-help": "2.1.6",
+    "tslib": "1.9.3"
+  },
+  "devDependencies": {
+    "@oclif/tslint": "3.1.1",
+    "@types/node": "10.14.7",
+    "ts-node": "8.1.0",
+    "tslint": "5.16.0",
+    "typescript": "3.4.5"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib"
+  ],
+  "homepage": "https://github.com/toiroakr/stringified-json-diff",
+  "keywords": [
+    "oclif", "diff"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "oclif": {
+    "bin": "sjd"
+  },
+  "repository": "toiroakr/stringified-json-diff",
+  "scripts": {
+    "posttest": "tslint -p . -t stylish",
+    "prepack": "rm -rf lib && tsc -b",
+    "test": "echo NO TESTS"
+  },
+  "types": "lib/index.d.ts"
+}
