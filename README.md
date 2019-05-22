@@ -11,5 +11,10 @@ Diff tool for stringified jsons.
 <!-- toc -->
 # Usage
 <!-- usage -->
-# Commands
-<!-- commands -->
+```
+$ sjd "{\"foo\": \"bar\"}" "{\"foo\": \"baz\"}"
+ {
+-  foo: "bar"
++  foo: "baz"
+ }
+```

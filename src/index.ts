@@ -1,4 +1,6 @@
 import {Command, flags} from '@oclif/command'
+// @ts-ignore
+import {diffString} from 'json-diff'
 
 class StringifiedJsonDiff extends Command {
   static description = 'describe the command here'
@@ -7,21 +9,27 @@ class StringifiedJsonDiff extends Command {
     // add --version flag to show CLI version
     version: flags.version({char: 'v'}),
     help: flags.help({char: 'h'}),
-    // flag with a value (-n, --name=VALUE)
-    name: flags.string({char: 'n', description: 'name to print'}),
-    // flag with no value (-f, --force)
-    force: flags.boolean({char: 'f'}),
   }
 
-  static args = [{name: 'file'}]
+  static args = [{name: 'stringified_json_a'}, {name: 'stringified_json_b'}]
 
   async run() {
-    const {args, flags} = this.parse(StringifiedJsonDiff)
+    const {args} = this.parse(StringifiedJsonDiff)
 
-    const name = flags.name || 'world'
-    this.log(`hello ${name} from ./src/index.ts`)
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`)
+    if (!args.stringified_json_a || !args.stringified_json_b) {
+      this.error('USAGE: $ sjd [STRINGIFIED_JSON_A] [STRINGIFIED_JSON_B]')
+    }
+
+    let name = ''
+    const jsons: string[] = []
+    try {
+      ['stringified_json_a', 'stringified_json_b'].forEach(jsonName => {
+        name = jsonName
+        jsons.push(JSON.parse(args[jsonName]))
+      })
+      this.log(diffString(jsons[0], jsons[1]))
+    } catch (e) {
+      this.error(`In parsing ${ name }\n${ e.message }`)
     }
   }
 }
